@@ -34,19 +34,26 @@ public class MyRunner implements CommandLineRunner {
         Edificio edificio = new Edificio(faker.company().name(), faker.address().fullAddress(), faker.country().capital());
         //edificioService.saveEdificio(edificio);
 
-        Postazione postazione = new Postazione("Descrizione postazione", Tipo.SALA_RIUNIONI, rnd.nextInt(5,50),edificio );
+        Postazione postazione = new Postazione("Descrizione postazione", Tipo.PRIVATO, rnd.nextInt(5,50),edificio );
         //postazioneService.savePostazione(postazione);
         Postazione postazione2 = postazioneService.findPostazioneById(2);
+        Postazione postazione3 = postazioneService.findPostazioneById(3);
 
         Utente utente = new Utente(faker.name().username(), faker.name().fullName(), faker.internet().emailAddress());
         //utenteService.saveUtente(utente);
         Utente utente2 = utenteService.findUtenteById(2);
 
-        Prenotazione prenotazione = new Prenotazione(utente2, postazione2);
-        prenotazioneService.savePrenotazione(prenotazione);
+        Prenotazione prenotazione = new Prenotazione(utente2, postazione3, LocalDate.now().plusDays(3));
+        //prenotazioneService.savePrenotazione(prenotazione);
 
+        System.out.println("-- FindByTipo --");
+        postazioneService.filterByTipo(Tipo.SALA_RIUNIONI).forEach(System.out::println);
 
+        System.out.println("-- FindByCitta --");
+        postazioneService.filterByCitta("Vienna").forEach(System.out::println);
 
+        System.out.println("-- FindByTipoAndCitta --");
+        postazioneService.filterByTipoAndCitta(Tipo.PRIVATO, "Abu Dhabi").forEach(System.out::println);
 
     }
 

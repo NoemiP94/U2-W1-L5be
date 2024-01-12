@@ -27,4 +27,15 @@ public class Utente {
         this.nomeCompleto = nomeCompleto;
         this.email = email;
     }
+
+    @Override
+    public String toString() {
+        return "Utente{" +
+                " - idUtente: " + idUtente +
+                " - username: " + username + '\'' +
+                " - nome completo: " + nomeCompleto + '\'' +
+                " - email: " + email + '\'' +
+                " - lista prenotazioni: " + listaPrenotazioni +
+                '}';
+    }
 }

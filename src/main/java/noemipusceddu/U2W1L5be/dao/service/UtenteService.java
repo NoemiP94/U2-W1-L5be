@@ -10,14 +10,13 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-@Slf4j
 public class UtenteService {
     @Autowired
     private UtenteDAO utenteDAO;
 
     public void saveUtente(Utente utente){
         utenteDAO.save(utente);
-        log.info("Utente salvato!");
+        System.out.println("Utente salvato!");
     }
 
     public Utente findUtenteById(long id) throws ItemNotFoundException {

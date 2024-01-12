@@ -29,4 +29,14 @@ public class Edificio {
         this.indirizzo = indirizzo;
         this.citta = citta;
     }
+
+    @Override
+    public String toString() {
+        return "Edificio{" +
+                " - idEdificio: " + idEdificio +
+                " - nome: " + nome + '\'' +
+                " - indirizzo: " + indirizzo + '\'' +
+                " - città: " + citta + '\'' +
+                '}';
+    }
 }

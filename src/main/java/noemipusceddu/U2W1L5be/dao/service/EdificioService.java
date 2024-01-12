@@ -10,14 +10,13 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-@Slf4j
 public class EdificioService {
     @Autowired
     private EdificioDAO edificioDAO;
 
     public void saveEdificio(Edificio edificio){
         edificioDAO.save(edificio);
-        log.info("Edificio salvato!");
+        System.out.println("Edificio salvato!");
     }
 
     public Edificio findEdificioById(long id) throws ItemNotFoundException {

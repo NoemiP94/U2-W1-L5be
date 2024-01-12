@@ -16,6 +16,7 @@ public class Prenotazione {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private long idPrenotazione;
     private LocalDate data;
+    private LocalDate dataOccupazionePostazione;
 
     @ManyToOne
     @JoinColumn(name= "utente_id")
@@ -25,9 +26,21 @@ public class Prenotazione {
     @JoinColumn(name= "postazione_id")
     private Postazione postazione;
 
-    public Prenotazione(Utente utente, Postazione postazione) {
+    public Prenotazione(Utente utente, Postazione postazione, LocalDate dataOccupazionePostazione) {
         this.data = LocalDate.now();
         this.utente = utente;
         this.postazione = postazione;
+        this.dataOccupazionePostazione = dataOccupazionePostazione;
+    }
+
+    @Override
+    public String toString() {
+        return "Prenotazione{" +
+                " - idPrenotazione: " + idPrenotazione +
+                " - prenotato il: " + data +
+                " - data occupazione postazione: " + dataOccupazionePostazione +
+                " - utente: " + utente.getNomeCompleto() +
+                " -  postazione: " + postazione +
+                '}';
     }
 }

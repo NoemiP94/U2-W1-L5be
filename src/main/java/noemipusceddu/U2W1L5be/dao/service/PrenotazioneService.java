@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@Slf4j
 public class PrenotazioneService {
     @Autowired
     private PrenotazioneDAO prenotazioneDAO;
@@ -23,9 +22,9 @@ public class PrenotazioneService {
         //salvare solo se non esiste già una prenotazione per quella postazione in quella data
         if(prenotazioneEsistente.isEmpty()){
             prenotazioneDAO.save(prenotazione);
-            log.info("Prenotazione salvata!");
+            System.out.println("Prenotazione salvata!");
         }else{
-            log.info("Postazione già prenotata per quella data!");
+            System.out.println("Postazione già prenotata per quella data!");
         }
     }
 
