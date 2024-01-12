@@ -17,14 +17,14 @@ public class PrenotazioneService {
 
     public void savePrenotazione(Prenotazione prenotazione){
 
-        Optional<Prenotazione> prenotazioneEsistente = prenotazioneDAO.findByPostazioneAndData(prenotazione.getPostazione(), prenotazione.getData()); //se c'è la prenotazione con quella postazione e quela data( può essere null)
+        Optional<Prenotazione> prenotazioneEsistente = prenotazioneDAO.findByPostazioneAndDataOccupazionePostazione(prenotazione.getPostazione(), prenotazione.getDataOccupazionePostazione()); //se c'è la prenotazione con quella postazione e quella data( può essere null)
+        Optional<Prenotazione> dataPrenotataPerUtente = prenotazioneDAO.findByUtenteAndDataOccupazionePostazione(prenotazione.getUtente(), prenotazione.getDataOccupazionePostazione()); //se l'utente ha già una prenotazione per quella data
 
-        //salvare solo se non esiste già una prenotazione per quella postazione in quella data
-        if(prenotazioneEsistente.isEmpty()){
+        if(prenotazioneEsistente.isEmpty() && dataPrenotataPerUtente.isEmpty()){
             prenotazioneDAO.save(prenotazione);
             System.out.println("Prenotazione salvata!");
         }else{
-            System.out.println("Postazione già prenotata per quella data!");
+            System.out.println("Cambia la tua prenotazione!");
         }
     }
 
@@ -35,4 +35,5 @@ public class PrenotazioneService {
     public List<Prenotazione> findAll(){
         return prenotazioneDAO.findAll();
     }
+
 }

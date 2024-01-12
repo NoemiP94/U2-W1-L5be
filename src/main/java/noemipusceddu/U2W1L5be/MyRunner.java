@@ -38,13 +38,14 @@ public class MyRunner implements CommandLineRunner {
         //postazioneService.savePostazione(postazione);
         Postazione postazione2 = postazioneService.findPostazioneById(2);
         Postazione postazione3 = postazioneService.findPostazioneById(3);
+        Postazione postazione4 = postazioneService.findPostazioneById(4);
 
         Utente utente = new Utente(faker.name().username(), faker.name().fullName(), faker.internet().emailAddress());
         //utenteService.saveUtente(utente);
         Utente utente2 = utenteService.findUtenteById(2);
 
-        Prenotazione prenotazione = new Prenotazione(utente2, postazione3, LocalDate.now().plusDays(3));
-        //prenotazioneService.savePrenotazione(prenotazione);
+        Prenotazione prenotazione = new Prenotazione(utente2, postazione4, LocalDate.now().plusDays(3));
+        prenotazioneService.savePrenotazione(prenotazione);
 
         System.out.println("-- FindByTipo --");
         postazioneService.filterByTipo(Tipo.SALA_RIUNIONI).forEach(System.out::println);
