@@ -15,7 +15,7 @@ public class Prenotazione {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private long idPrenotazione;
-    private LocalDate giornoPrenotazione;
+    private LocalDate data;
 
     @ManyToOne
     @JoinColumn(name= "utente_id")
@@ -25,8 +25,8 @@ public class Prenotazione {
     @JoinColumn(name= "postazione_id")
     private Postazione postazione;
 
-    public Prenotazione(LocalDate giornoPrenotazione, Utente utente, Postazione postazione) {
-        this.giornoPrenotazione = giornoPrenotazione;
+    public Prenotazione(Utente utente, Postazione postazione) {
+        this.data = LocalDate.now();
         this.utente = utente;
         this.postazione = postazione;
     }

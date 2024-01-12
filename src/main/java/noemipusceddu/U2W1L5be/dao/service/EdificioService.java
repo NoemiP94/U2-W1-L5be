@@ -15,13 +15,12 @@ public class EdificioService {
     @Autowired
     private EdificioDAO edificioDAO;
 
-    // save, find
-    public void save(Edificio edificio){
+    public void saveEdificio(Edificio edificio){
         edificioDAO.save(edificio);
         log.info("Edificio salvato!");
     }
 
-    public Edificio findById(long id) throws ItemNotFoundException {
+    public Edificio findEdificioById(long id) throws ItemNotFoundException {
         return edificioDAO.findById(id).orElseThrow(()-> new ItemNotFoundException(id));
     }
 
